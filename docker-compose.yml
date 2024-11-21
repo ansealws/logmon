@@ -11,7 +11,6 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--web enable-lifecycle'
     restart: always
-    user: root
 
   grafana:
     image: grafana/grafana
@@ -23,7 +22,6 @@ services:
     depends_on:
       - prometheus
     restart: always
-    user: root
 
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
