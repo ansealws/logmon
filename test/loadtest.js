@@ -15,7 +15,7 @@ export const options = {
 };
 // Simulated user behavior
 export default function () {
-    let res = http.get("http://54.147.87.181//stub_status");
+    let res = http.get("http://172.31.37.248/stub_status");
     // Validate response status
     check(res, { "status was 200": (r) => r.status == 200 });
     sleep(1);
