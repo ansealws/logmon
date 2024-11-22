@@ -41,3 +41,27 @@ services:
     command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
     restart: always
+
+  nginx:
+    image: nginx
+    container_name: nginx-www
+    volumes:
+      - ./nginx/html:/usr/share/nginx/html:rw
+      - ./nginx/conf:/etc/nginx/conf.d
+      - ./nginx/log:/var/log/nginx
+    ports:
+      - '80:80'
+    restart: always
+
+  nginx-prometheus-exporter:
+    image: nginx/nginx-prometheus-exporter:1.0
+    container_name: prometheus-nginx-exporter
+    restart: always
+    env_file:
+      .env
+    command:
+      - -nginx.scrape-uri=http://nginx/stub_status
+    expose:
+      - 9113
+    depends_on:
+      - prometheus
