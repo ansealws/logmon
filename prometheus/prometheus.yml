@@ -16,4 +16,8 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ["node-exporter:9100"]
+      
+  - job_name: "web_server"
+    scrape_interval: 5s
+    static_configs:
       - targets: ['nginx-prometheus-exporter:9113']
